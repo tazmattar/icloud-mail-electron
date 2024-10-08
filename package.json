@@ -1,18 +1,44 @@
 {
   "name": "icloud-mail-electron",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An Electron wrapper for iCloud Mail.",
   "main": "index.js",
   "scripts": {
     "start": "electron .",
-    "build": "webpack --config webpack.config.js"
+    "build": "webpack --config webpack.config.js",
+    "dist": "electron-builder"
   },
-  "author": "Your Name",
+  "author": "Taz Mattar",
   "license": "MIT",
   "devDependencies": {
     "electron": "^24.0.0",
     "webpack": "^5.0.0",
-    "webpack-cli": "^4.0.0"
+    "webpack-cli": "^4.0.0",
+    "electron-builder": "^23.0.0"
   },
-  "dependencies": {}
+  "build": {
+    "appId": "com.yourname.icloud-mail-electron",
+    "productName": "iCloud Mail",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "dist/",
+      "index.js",
+      "package.json",
+      "webpack.config.js"
+    ],
+    "mac": {
+      "target": "dmg",
+      "icon": "assets/icons/Mail.icns"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icons/Mail_256px.ico"
+    },
+    "linux": {
+      "target": "AppImage",
+      "icon": "assets/icons/Mail_256px.png"
+    }
+  }
 }
