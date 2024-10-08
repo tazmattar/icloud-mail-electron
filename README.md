@@ -55,35 +55,41 @@ This project relies on the following dependencies:
 
 ---
 
+
 ## Installation
 
-Follow these steps to install and run the iCloud Mail Electron app locally:
+### Option 1: Download Pre-Built Executable (Recommended)
 
-1. **Clone the repository**:
+You can download the pre-built version of the app for your platform from the [Releases](https://github.com/your-username/your-repo-name/releases) section.
+
+- **Windows**: Download the `.exe` file.
+- **macOS**: Download the `.dmg` file.
+- **Linux**: Download the `.AppImage` file.
+
+### Option 2: Build the App Locally
+
+If you prefer to build the app yourself, follow these steps:
+
+1. Clone the repository:
    ```bash
    git clone https://github.com/your-username/your-repo-name.git
    cd your-repo-name
    ```
 
-2. **Install Node.js dependencies**:
-   Make sure you have Node.js installed, then run:
+2. Install dependencies:
    ```bash
    npm install
    ```
 
-3. **Build the app using Webpack**:
-   Webpack will bundle your source code into a single `bundle.js` file.
+3. Build the app using Webpack:
    ```bash
    npm run build
    ```
 
-4. **Start the Electron app**:
-   Once the dependencies are installed and the project is built, you can start the Electron app:
+4. Start the Electron app:
    ```bash
    npm run start
    ```
-
----
 
 ## Usage
 
