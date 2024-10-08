@@ -60,10 +60,8 @@ This project relies on the following dependencies:
 
 ### Option 1: Download Pre-Built Executable (Recommended)
 
-You can download the pre-built version of the app for your platform from the [Releases](https://github.com/your-username/your-repo-name/releases) section.
+You can download the pre-built Linux version of the app from the [Releases](https://github.com/your-username/your-repo-name/releases) section.
 
-- **Windows**: Download the `.exe` file.
-- **macOS**: Download the `.dmg` file.
 - **Linux**: Download the `.AppImage` file.
 
 ### Option 2: Build the App Locally
@@ -74,22 +72,6 @@ If you prefer to build the app yourself, follow these steps:
    ```bash
    git clone https://github.com/your-username/your-repo-name.git
    cd your-repo-name
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Build the app using Webpack:
-   ```bash
-   npm run build
-   ```
-
-4. Start the Electron app:
-   ```bash
-   npm run start
-   ```
 
 ## Usage
 
