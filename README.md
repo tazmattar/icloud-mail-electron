@@ -24,12 +24,6 @@ This project relies on the following dependencies:
      # On Ubuntu/Debian-based systems:
      sudo apt update
      sudo apt install nodejs npm
-
-     # On macOS (via Homebrew):
-     brew install node
-
-     # On Windows:
-     Download and install Node.js from the [official website](https://nodejs.org/).
      ```
 
 2. **[Electron](https://www.electronjs.org/)** (v24.x or later):
