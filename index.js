@@ -1,7 +1,7 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, session } = require('electron');
 const path = require('path');
 
-function createWindow () {
+function createWindow() {
   const win = new BrowserWindow({
     width: 1200,
     height: 800,
@@ -12,16 +12,19 @@ function createWindow () {
     }
   });
 
-  // Directly load iCloud Mail
+  // Load iCloud Mail
   win.loadURL('https://www.icloud.com/mail/');
 
   // Optionally remove the menu bar for a clean interface
-  win.removeMenu(); 
+  win.removeMenu();
 
-  // Inject JavaScript to hide the quick access button
+  // Persist session between app launches
+  const userSession = session.defaultSession;
+
+  // Listen for the did-finish-load event to inject JavaScript
   win.webContents.on('did-finish-load', () => {
+    // Inject JavaScript to hide the quick access button
     win.webContents.executeJavaScript(`
-      // Find the quick access button (top-right grid icon) and hide it
       const quickAccessButton = document.querySelector('[aria-label="App Launcher"]');
       if (quickAccessButton) {
         quickAccessButton.style.display = 'none';
@@ -29,18 +32,23 @@ function createWindow () {
     `);
   });
 
-  // Disable navigation to URLs outside iCloud Mail
+  // Disable navigation outside of iCloud Mail
   win.webContents.on('will-navigate', (event, newURL) => {
     if (newURL !== 'https://www.icloud.com/mail/') {
-      event.preventDefault(); // Prevents navigation to other URLs
+      event.preventDefault();  // Prevents navigation to other URLs
     }
   });
 
-  // Prevent opening new windows (pop-ups)
+  // Prevent popups from opening in new windows
   win.webContents.on('new-window', (event, newURL) => {
     if (newURL !== 'https://www.icloud.com/mail/') {
-      event.preventDefault(); // Prevents any pop-up windows
+      event.preventDefault();  // Prevents pop-ups
     }
+  });
+
+  // Save cookies and session data
+  app.on('before-quit', () => {
+    userSession.cookies.flushStore();
   });
 }
 
@@ -51,5 +59,11 @@ app.whenReady().then(() => {
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit();
+  }
+});
+
+app.on('activate', () => {
+  if (BrowserWindow.getAllWindows().length === 0) {
+    createWindow();
   }
 });
